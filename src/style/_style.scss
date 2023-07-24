@@ -124,11 +124,11 @@ header {
     display: none;
     flex-direction: column;
     justify-content: center;
-    margin-right: 0;
+    margin-right: 2vh;
     margin-left: auto;
-    height: 4vw;
+    height: 6vh;
     padding: 0.4vw 0.2vw;
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: pointer;
     z-index: 222222;
 
@@ -142,7 +142,7 @@ header {
 
     .menu-btn {
       height: 0.3vw;
-      width: 2.9vw;
+      width: 4.4vh;
       background: rgb(255, 255, 255);
       transition: all 0.15s ease-out;
       position: relative;
@@ -158,12 +158,12 @@ header {
       }
 
       &:before {
-        top: -1vw;
+        top: -1.5vh;
         transform-origin: left;
       }
 
       &:after {
-        top: 1vw;
+        top: 1.5vh;
         transform-origin: left;
       }
     }
@@ -229,7 +229,7 @@ header {
     right: 0;
     width: 80vw;
     height: 100%;
-    background-color: #113311;
+    background-color: #02171bde;
     transform: translateX(200%);
   }
 
@@ -237,6 +237,10 @@ header {
     visibility: visible;
     transform: translateX(0);
     z-index: 2;
+
+    & .menu__header a {
+      font-size: 5vw;
+    }
   }
 
   a {

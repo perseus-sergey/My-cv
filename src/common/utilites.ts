@@ -26,4 +26,5 @@ export const generateDomElement = <T extends HTMLElement>(
   return element;
 };
 
+export const cleanClass = (className: string): string => className.split('.')[1];
 export const delay = (ms = 1000): Promise<void> => new Promise((res) => { setTimeout(res, ms); });

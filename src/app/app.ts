@@ -1,5 +1,5 @@
 import { constantsClasses, constantsLinks, constantsTexts } from '../common/constants';
-import { generateDomElement } from '../common/utilites';
+import { cleanClass, generateDomElement } from '../common/utilites';
 
 const {
   LOGO_TEXT,
@@ -17,6 +17,7 @@ const {
   LOGO,
   LOGO_WRAP,
   ACTIVE_LINK,
+  ACTIVE,
   HEADER,
   SWU_IMG,
   MENU_BTN_WRAP,
@@ -42,7 +43,11 @@ export class App {
 
   private menuPortfolio!: HTMLAnchorElement;
 
-  private minuAbout!: HTMLAnchorElement;
+  private menuAbout!: HTMLAnchorElement;
+
+  private navMenu!: HTMLAnchorElement;
+
+  private menuBtnWrap!: HTMLAnchorElement;
 
   public start(): void {
     this.renderHeaeder();
@@ -52,6 +57,7 @@ export class App {
 
   private addListners(): void {
     this.observeHeadMenu();
+    document.addEventListener('click', this.documentClickHandler.bind(this));
   }
 
   private observeHeadMenu(): void {
@@ -62,9 +68,9 @@ export class App {
           [
             this.menuMain,
             this.menuPortfolio,
-            this.minuAbout,
+            this.menuAbout,
           ].forEach((menuElem) => {
-            menuElem.classList.toggle(ACTIVE_LINK, menuElem.href.split('#')[1] === entrie.target.id);
+            menuElem.classList.toggle(cleanClass(ACTIVE_LINK), menuElem.href.split('#')[1] === entrie.target.id);
           });
         }
       });
@@ -78,6 +84,23 @@ export class App {
     ].forEach((element) => observer.observe(element));
   }
 
+  private documentClickHandler(event: Event): void {
+    const targ = event.target as HTMLElement;
+    if (targ.closest(MENU_BTN_WRAP)) this.menuBtnClicked();
+    else if (targ.closest(`${HEADER_MENU} a`)) this.closeMenu();
+  }
+
+  private menuBtnClicked(): void {
+    this.navMenu.classList.toggle(cleanClass(ACTIVE));
+    this.menuBtnWrap.classList.toggle(cleanClass(ACTIVE));
+    // this.navMenu.classList.toggle(ACTIVE, !this.navMenu.classList.contains(ACTIVE))
+  }
+
+  private closeMenu(): void {
+    this.navMenu.classList.remove(cleanClass(ACTIVE));
+    this.menuBtnWrap.classList.remove(cleanClass(ACTIVE));
+  }
+
   private renderHeaeder(): void {
     this.header = generateDomElement('header', null, null, HEADER);
     const logoAndSwuImgWrap = generateDomElement('div', null, this.header, LOGO_WRAP);
@@ -87,16 +110,16 @@ export class App {
     const swuImg: HTMLImageElement = generateDomElement('img', '', logoAndSwuImgWrap, SWU_IMG);
     swuImg.alt = SWU_IMG_ALT;
     swuImg.src = SWU_IMG_PATH;
-    const menuBtnWrap = generateDomElement('div', null, this.header, MENU_BTN_WRAP);
-    generateDomElement('div', null, menuBtnWrap, MENU_BTN);
-    const nav = generateDomElement('nav', null, this.header, MENU);
-    const menuHeader = generateDomElement('div', null, nav, HEADER_MENU);
+    this.menuBtnWrap = generateDomElement('div', null, this.header, MENU_BTN_WRAP);
+    generateDomElement('div', null, this.menuBtnWrap, MENU_BTN);
+    this.navMenu = generateDomElement('nav', null, this.header, MENU);
+    const menuHeader = generateDomElement('div', null, this.navMenu, HEADER_MENU);
     this.menuMain = generateDomElement('a', MENU_LINK_MAIN, menuHeader);
     this.menuMain.href = ID_MAIN;
     this.menuPortfolio = generateDomElement('a', MENU_LINK_PORTFOLIO, menuHeader);
     this.menuPortfolio.href = ID_PORTFOLIO;
-    this.minuAbout = generateDomElement('a', MENU_LINK_ABOUT, menuHeader);
-    this.minuAbout.href = ID_ABOUT;
+    this.menuAbout = generateDomElement('a', MENU_LINK_ABOUT, menuHeader);
+    this.menuAbout.href = ID_ABOUT;
     document.body.prepend(this.header);
   }
 
