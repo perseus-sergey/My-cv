@@ -38,7 +38,7 @@
     "build": "webpack --mode=production --node-env=production",
     "dev": "webpack --mode=development",
     "watch": "webpack --watch",
-    "serve": "webpack serve",
+    "start": "webpack serve",
     "deploy": "npm run build && npx gh-pages -d dist"
   }
 }
