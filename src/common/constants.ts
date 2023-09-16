@@ -5,7 +5,7 @@ export const constantsLinks = {
   SWU_IMG_PATH: './assets/images/ukraine_stand.png',
 };
 export const constantsTexts = {
-  LOGO_TEXT: 'Sergey Gubriy',
+  LOGO_TEXT: 'Sergiy Gubriy',
   LOGO_SPAN: 'Web developer',
   SWU_IMG_ALT: 'Stand With Ukraine',
   MENU_LINK_MAIN: 'Main',
