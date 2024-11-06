@@ -1,14 +1,8 @@
 import { constantsClasses, constantsLinks, constantsTexts } from '../common/constants';
 import { cleanClass, generateDomElement } from '../common/utilites';
 
-const {
-  LOGO_TEXT,
-  LOGO_SPAN,
-  SWU_IMG_ALT,
-  MENU_LINK_MAIN,
-  MENU_LINK_PORTFOLIO,
-  MENU_LINK_ABOUT,
-} = constantsTexts;
+const { LOGO_TEXT, LOGO_SPAN, SWU_IMG_ALT, MENU_LINK_MAIN, MENU_LINK_PORTFOLIO, MENU_LINK_ABOUT } =
+  constantsTexts;
 
 const {
   ID_MAIN,
@@ -26,9 +20,7 @@ const {
   HEADER_MENU,
 } = constantsClasses;
 
-const {
-  SWU_IMG_PATH,
-} = constantsLinks;
+const { SWU_IMG_PATH } = constantsLinks;
 
 export class App {
   private header!: HTMLElement;
@@ -61,27 +53,27 @@ export class App {
   }
 
   private observeHeadMenu(): void {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entrie) => {
-        if (entrie.isIntersecting) {
-          console.log(entrie.target.id);
-          [
-            this.menuMain,
-            this.menuPortfolio,
-            this.menuAbout,
-          ].forEach((menuElem) => {
-            menuElem.classList.toggle(cleanClass(ACTIVE_LINK), menuElem.href.split('#')[1] === entrie.target.id);
-          });
-        }
-      });
-    }, {
-      threshold: 0.6,
-    });
-    [
-      this.mainElement,
-      this.aboutElement,
-      this.portfolioElement,
-    ].forEach((element) => observer.observe(element));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entrie) => {
+          if (entrie.isIntersecting) {
+            console.log(entrie.target.id);
+            [this.menuMain, this.menuPortfolio, this.menuAbout].forEach((menuElem) => {
+              menuElem.classList.toggle(
+                cleanClass(ACTIVE_LINK),
+                menuElem.href.split('#')[1] === entrie.target.id
+              );
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.6,
+      }
+    );
+    [this.mainElement, this.aboutElement, this.portfolioElement].forEach((element) =>
+      observer.observe(element)
+    );
   }
 
   private documentClickHandler(event: Event): void {

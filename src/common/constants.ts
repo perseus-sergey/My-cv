@@ -1,5 +1,4 @@
-export const constantsNumbers = {
-};
+export const constantsNumbers = {};
 
 export const constantsLinks = {
   SWU_IMG_PATH: './assets/images/ukraine_stand.png',

@@ -35,7 +35,9 @@ $keyBgColorDefault: $keyBgColorBlue;
 
 @mixin fontColor($color) {
   color: $color;
-  text-shadow: 1.5px 1.5px 0 darker($color, 8), 0.5px -0.5px 0.5px #fff;
+  text-shadow:
+    1.5px 1.5px 0 darker($color, 8),
+    0.5px -0.5px 0.5px #fff;
 }
 
 @mixin fontSuperSize($number) {
@@ -70,7 +72,7 @@ $keyBgColorDefault: $keyBgColorBlue;
   flex-direction: row;
   @media (orientation: portrait) {
     & {
-     flex-direction: column;
+      flex-direction: column;
     }
   }
 }
@@ -78,8 +80,8 @@ $keyBgColorDefault: $keyBgColorBlue;
   flex-direction: row;
   @media (max-width: 1024px) {
     & {
-     flex-direction: column;
-     gap: 2vw;
+      flex-direction: column;
+      gap: 2vw;
     }
   }
 }
@@ -87,12 +89,12 @@ $keyBgColorDefault: $keyBgColorBlue;
   flex-direction: row;
   @media (max-width: 1024px) {
     & {
-     flex-direction: column;
-     gap: 2vw;
+      flex-direction: column;
+      gap: 2vw;
 
-     & > * {
-      width: 100% !important;
-     }
+      & > * {
+        width: 100% !important;
+      }
     }
   }
 }

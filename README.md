@@ -13,3 +13,5 @@ yarn build
 ```
 
 to bundle your application
+
+Deploy - [GitHub-Pages](https://perseus-sergey.github.io/My-cv/)

@@ -8,7 +8,7 @@ export const generateDomElement = <T extends HTMLElement>(
   const arrClasses: string[] = [];
   let elementId = '';
 
-  const fillArray = (selector: string):void => {
+  const fillArray = (selector: string): void => {
     const [, separ, name] = selector.split(/([.#])/);
     if (separ === '.') arrClasses.push(name);
     else if (separ === '#') elementId = name;
@@ -27,4 +27,7 @@ export const generateDomElement = <T extends HTMLElement>(
 };
 
 export const cleanClass = (className: string): string => className.split('.')[1];
-export const delay = (ms = 1000): Promise<void> => new Promise((res) => { setTimeout(res, ms); });
+export const delay = (ms = 1000): Promise<void> =>
+  new Promise((res) => {
+    setTimeout(res, ms);
+  });
